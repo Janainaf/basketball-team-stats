@@ -1,5 +1,6 @@
 import constants
 import random
+import statistics 
 
 
 def clean_data(constants):
@@ -40,78 +41,59 @@ def balance_teams():
 #     balance_teams()
 
 distributedTeams = balance_teams()
-print("BASKETBALL TEAM STATS TOOL")
-print("---- MENU----")
-print("Here are your choices:")
-print("(A) Display Team Stats")
-print("(B) Quit")
 
-
-print("Enter an option:") 
-print("(A) Panthers")
-print("(B) Bandits")
-print("(C) Warriors")
-
-answer = input("Enter an option:") 
-if answer == "A":
-    print(f'Team: {distributedTeams[2]["TEAM"]}')
+while True:
+    print("BASKETBALL TEAM STATS TOOL")
+    print("---- MENU----")
+    print("Here are your choices:")
+    print("(A) Display Team Stats")
+    print("(B) Quit")
+    answer1 = input()
+    print("\n")
+    if answer1 == "B":
+        print("see you later")
+        exit()
+    if answer1 == "A":
+        print("Enter an option:") 
+        print("(A) Panthers")
+        print("(B) Bandits")
+        print("(C) Warriors")
+    answer = input("") 
+    if answer == "A":
+        i = 2
+    if answer == "B":
+        i = 1
+    if answer == "C":
+        i = 0
+    print(f'Team: {distributedTeams[i]["TEAM"]} Stats')
     print("--------------------")
-    print(f'Total players: {len(distributedTeams[2]["PLAYERS"])}')
-    print(f'Total experienced: {len(distributedTeams[2]["PLAYERS"])}')
-    print(f'Total inexperienced: {len(distributedTeams[2]["PLAYERS"])}')
-    print(f'Average height: {len(distributedTeams[2]["PLAYERS"])}')
+    print(f'Total players: {len(distributedTeams[i]["PLAYERS"])}')
+    experience = 0
+    inexperience = 0
+    for player in distributedTeams[i]["PLAYERS"]:  
+        if player["experience"] != False:
+            experience = experience +1 
+        else:
+            inexperience = inexperience +1 
+    print(f'Total experienced: {experience}')
+    print(f'Total inexperienced: {inexperience}')
+    height = []
+    for players in distributedTeams[0]["PLAYERS"]:   
+        height.append(players["height"])
+    avegare = statistics.mean(height)
+    print(f'Average height: {avegare}')
+    print("\n")
     print(f'Players on Team:')
-    for players in distributedTeams[2]["PLAYERS"]:
-        print(players["name"], end =", ")
+    playersNames = []
+    for players in distributedTeams[i]["PLAYERS"]:  
+        playersNames.append(players["name"])
+    print(", ".join(playersNames))    
     print("\n")
     print(f'Guardians on Team:')
-    for players in distributedTeams[2]["PLAYERS"]:      
-        print(players["guardians"], end =", ")
-
-if answer == "B":
-    print(f'Team: {distributedTeams[1]["TEAM"]}')
-    print("--------------------")
-    print(f'Total players: {len(distributedTeams[1]["PLAYERS"])}')
-    print(f'Total experienced: {len(distributedTeams[1]["PLAYERS"])}')
-    print(f'Total inexperienced: {len(distributedTeams[1]["PLAYERS"])}')
-    print(f'Average height: {len(distributedTeams[1]["PLAYERS"])}')
-    print(f'Players on Team:')
-    for players in distributedTeams[1]["PLAYERS"]:
-        print(players["name"], end =", ")
+    guardians = []
+    for players in distributedTeams[i]["PLAYERS"]:   
+        guardians.append(players["guardians"])
+        flat_list = [item for sublist in guardians for item in sublist]
+    print(", ".join(flat_list))    
     print("\n")
-    print(f'Guardians on Team:')
-    for players in distributedTeams[1]["PLAYERS"]:      
-        print(players["guardians"], end =", ")
 
-
-if answer == "C":
-    print(f'Team: {distributedTeams[0]["TEAM"]}')
-    print("--------------------")
-    print(f'Total players: {len(distributedTeams[0]["PLAYERS"])}')
-    print(f'Total experienced: {len(distributedTeams[0]["PLAYERS"])}')
-    print(f'Total inexperienced: {len(distributedTeams[0]["PLAYERS"])}')
-    print(f'Average height: {len(distributedTeams[0]["PLAYERS"])}')
-    print(f'Players on Team:')
-    for players in distributedTeams[0]["PLAYERS"]:  
-        print(players["name"], end =", ")
-    print("\n")
-    print(f'Guardians on Team:')
-    for players in distributedTeams[0]["PLAYERS"]:      
-        print(players["guardians"], end =", ")
-
-
-
-# Team: Panthers Stats
-# --------------------
-# Total players: 6
-# Total experienced: 3
-# Total inexperienced: 3
-# Average height: 42.5
-
-# Players on Team:
-#   Karl Saygan, Chloe Alaska, Phillip Helm, Suzane Greenberg, Herschel Krustofski, Joe Smith
-
-# Guardians:
-#   Heather Bledsoe, David Alaska, Jamie Alaska, Thomas Helm, Eva Jones, Henrietta Dumas, Hyman Krustofski, Rachel Krustofski, Jim Smith, Jan Smith
-
-# Press ENTER to continue...
