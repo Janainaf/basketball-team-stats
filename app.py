@@ -57,11 +57,12 @@ if __name__ == "__main__":
             if answer1 == "B":
                 print("see you later")
                 exit()
-            if answer1 == "A":
-                print("Enter an option:") 
-                print("(A) Panthers")
-                print("(B) Bandits")
-                print("(C) Warriors")
+            while True:
+                if answer1 == "A":
+                    print("Enter an option:") 
+                    print("(A) Panthers")
+                    print("(B) Bandits")
+                    print("(C) Warriors")
             
                 try:
                     answer = input(" " )
@@ -69,14 +70,14 @@ if __name__ == "__main__":
                     if answer != "A" and answer != "B" and answer != "C":
                         raise NameError
                 except NameError:
-                    print("Not a menu option, please try again2")
+                    print("Not a menu option, please try again")
                 else:
                     if answer == "A":
-                        i = 2
+                        i = 0
                     if answer == "B":
                         i = 1
                     if answer == "C":
-                        i = 0
+                        i = 2
                     print(f'Team: {distributedTeams[i]["TEAM"]} Stats')
                     print("--------------------")
                     print(f'Total players: {len(distributedTeams[i]["PLAYERS"])}')
@@ -108,4 +109,5 @@ if __name__ == "__main__":
                         flat_list = [item for sublist in guardians for item in sublist]
                     print(", ".join(flat_list))    
                     print("\n")
+                    break
 
